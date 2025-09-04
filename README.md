@@ -1,6 +1,6 @@
 # 网络实验项目
 
-这是一个用于计算机网络课程的教学实验项目，包含两个核心实验：停等协议模拟和CRC校验算法实现。
+这是一个用于计算机网络课程的教学实验项目，包含多个网络协议和通信系统的实验，旨在帮助学生理解计算机网络的基本原理。
 
 ## 实验列表
 
@@ -10,9 +10,14 @@
 ### 实验2: CRC校验算法 (Cyclic Redundancy Check)
 循环冗余校验算法实现，展示数据错误检测的工作原理。
 
+### 实验3: TCP Socket聊天系统
+基于Socket TCP协议的客户端-服务器聊天系统，演示TCP网络编程核心概念。
+
 ---
 
 ## 实验1: 停等协议模拟
+
+这个实验实现了简化版的停等协议（Stop-and-Wait Protocol）模拟系统。
 
 ## 项目简介
 
@@ -163,12 +168,7 @@ cd src && java -cp sliding_window_protocol/build sliding_window_protocol.test.Si
 
 ### 项目简介
 
-CRC (Cyclic Redundancy Check) 循环冗余校验是一种广泛应用于数字网络和数据存储中的错误检测方法。本实验通过Java实现了完整的CRC算法体系，包括：
-
-- 多种标准CRC算法（CRC-8、CRC-16、CRC-32）
-- 数据编码与校验功能
-- 错误检测与定位能力
-- 教学演示和性能分析
+CRC (Cyclic Redundancy Check) 循环冗余校验是一种广泛应用于数字网络和数据存储中的错误检测方法。本实验实现了完整的CRC算法体系，包括多种标准CRC算法、数据编码与校验功能。
 
 ### 项目结构
 
@@ -184,149 +184,78 @@ src/crc_algorithm/
     └── *.class               # 编译后的字节码文件
 ```
 
-### 文件说明
+### 功能特性
 
-#### 核心实现（core目录）
-
-- **CRCAlgorithm.java**: CRC算法的完整实现
-  - `CRCType` 枚举：支持的CRC标准类型
-  - `CRCResult` 类：封装CRC计算结果
-  - 查表法优化：提高计算效率
-  - 错误模拟：用于教学演示
-
-#### 交互界面（frontend目录）
-
-- **CRCDemo.java**: 控制台交互程序
-  - 基本CRC计算演示
-  - 错误检测功能展示
-  - 不同CRC算法对比
-  - 文件数据校验
-  - 教学演示模式
-  - 统计信息展示
-
-#### 测试用例（test目录）
-
-- **CRCTest.java**: 自动化功能测试
-  - 基本功能正确性测试
-  - 标准向量验证测试
-  - 边界条件处理测试
-  - 错误检测能力测试
-  - 性能基准测试
+#### 算法支持
+- ✅ CRC-8, CRC-16, CRC-32标准算法
+- ✅ 查表法优化计算
+- ✅ 错误检测与定位
+- ✅ 教学演示界面
 
 ### 编译和运行
-
-#### 编译项目
 
 ```bash
 # 编译CRC算法模块
 javac -d src/crc_algorithm/build src/crc_algorithm/core/*.java src/crc_algorithm/frontend/*.java src/crc_algorithm/test/*.java
-```
 
-#### 运行演示程序
-
-```bash
-# 运行CRC交互式演示
+# 运行演示程序
 cd src && java -cp crc_algorithm/build crc_algorithm.frontend.CRCDemo
+
+# 运行测试
+cd src && java -cp crc_algorithm/build crc_algorithm.test.CRCTest
 ```
 
-#### 运行测试程序
+---
 
-```bash
-# 运行CRC功能测试
-cd src && java -cp crc_algorithm/build crc_algorithm.test.CRCTest
+## 实验3: TCP Socket聊天系统
+
+TCP Socket聊天系统是一个多用户实时聊天应用，基于Java Socket API实现，演示TCP网络编程和多线程概念。
+
+### 项目结构
+
+```
+src/tcp_chat_system/
+├── core/                           # 核心实现逻辑
+│   ├── ChatMessage.java            # 消息实体类
+│   ├── ChatServer.java             # TCP服务器实现
+│   └── ChatClient.java             # TCP客户端实现
+├── frontend/                       # 交互界面
+│   ├── ServerInterface.java        # 服务器管理界面
+│   └── ClientInterface.java        # 客户端聊天界面
+├── test/                           # 测试用例
+│   └── ChatSystemTest.java         # 系统功能测试
+└── build/                          # 编译输出目录（自动生成）
+    └── *.class                     # 编译后的字节码文件
 ```
 
 ### 功能特性
 
-#### 算法支持
-- ✅ CRC-8 (多项式: x^8 + x^2 + x^1 + 1)
-- ✅ CRC-16 IBM标准 (多项式: x^16 + x^15 + x^2 + 1)
-- ✅ CRC-32 IEEE标准 (多项式: x^32 + x^26 + ... + 1)
-- ✅ 查表法优化计算
-- ✅ 自定义生成多项式支持
-
 #### 核心功能
-- ✅ 数据编码（添加CRC校验码）
-- ✅ 数据校验（检测传输错误）
-- ✅ 错误位置定位
-- ✅ 单/多比特错误检测
-- ✅ 二进制数据可视化
+- ✅ TCP Socket多客户端并发连接
+- ✅ 实时消息广播
+- ✅ 用户连接状态管理
+- ✅ 消息历史记录
+- ✅ 线程安全通信
 
-#### 演示功能
-- ✅ 交互式计算界面
-- ✅ 错误注入模拟
-- ✅ 算法性能对比
-- ✅ 教学步骤展示
-- ✅ 统计信息分析
+### 编译和运行
 
-### 使用示例
+```bash
+# 编译TCP聊天系统
+javac -d src/tcp_chat_system/build src/tcp_chat_system/core/*.java src/tcp_chat_system/frontend/*.java src/tcp_chat_system/test/*.java
 
-#### 基本使用
+# 启动服务器
+cd src && java -cp tcp_chat_system/build tcp_chat_system.frontend.ServerInterface
 
-1. 启动CRC演示程序
-2. 选择"基本CRC计算演示"
-3. 选择CRC算法类型（CRC-8/16/32）
-4. 输入要校验的数据
-5. 查看CRC计算结果和详细信息
+# 启动客户端（可启动多个）
+cd src && java -cp tcp_chat_system/build tcp_chat_system.frontend.ClientInterface
 
-#### 错误检测演示
+# 运行测试
+cd src && java -cp tcp_chat_system/build tcp_chat_system.test.ChatSystemTest
+```
 
-1. 选择"错误检测演示"
-2. 输入测试数据
-3. 系统自动模拟传输错误
-4. 观察CRC检错能力和检测率
-5. 分析不同算法的检错性能
+### 技术说明
 
-#### 算法对比
-
-1. 选择"CRC算法对比"
-2. 输入相同的测试数据
-3. 查看不同CRC算法的计算结果
-4. 比较算法特性和应用场景
-
-### 教学要点
-
-本实验适合用于演示以下计算机网络概念：
-
-1. **错误检测基础**
-   - CRC算法原理
-   - 生成多项式的作用
-   - 模运算和异或操作
-
-2. **数据完整性保护**
-   - 数据编码过程
-   - 校验码生成方法
-   - 错误检测机制
-
-3. **算法优化技术**
-   - 查表法原理
-   - 时间复杂度分析
-   - 性能优化方法
-
-4. **实际应用场景**
-   - 网络协议中的应用
-   - 文件完整性检查
-   - 存储设备错误检测
-
-### 扩展建议
-
-如需进一步学习，可以考虑以下扩展：
-
-- 实现BCH码等其他纠错码
-- 添加Reed-Solomon编码
-- 集成到网络传输协议中
-- 实现硬件级CRC计算
-
-### 实验总结
-
-#### 技术栈
 - **开发语言**: Java 8+
-- **算法复杂度**: O(n) 时间复杂度（查表法）
-- **存储需求**: 每种CRC类型需要256项查找表
-- **错误检测能力**: 可检测所有单比特错误和大部分多比特错误
-
-#### 项目特色
-- **教学导向**: 丰富的中文注释和教学演示功能
-- **算法完整**: 支持主流CRC标准，可扩展性强
-- **交互友好**: 直观的控制台界面和详细的计算过程展示
-- **测试全面**: 包含功能测试、性能测试和边界测试
+- **网络协议**: TCP Socket
+- **并发模型**: 多线程
+- **设计原则**: 教学友好，代码简洁，注释丰富
