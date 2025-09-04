@@ -41,3 +41,10 @@ cd src && java -cp sliding_window_protocol/build sliding_window_protocol.test.Si
 - All output and comments are in Chinese for local students
 - Focus on core stop-and-wait concepts rather than complex edge cases
 - 使用中文描述和回答我
+- 我在为计算机网络课程开发实验项目代码，这个代码需要为学习的同学们进行讲解，所以代码的结构尽量简单化，代码的注释尽量的丰富;
+- 除了实现核心功能外，为每一个实验创建一个输入输出界面，不需要很复杂，能完整展示开发的内容就可以；
+- 每个实验都需要编写测试用例；
+- 代码结构：
+1. 每个实验单独放在src下的子目录中，子目录的名字能够清晰的反映实验的内容；
+2. 参考sliding_window_protocol的目录结构，将编译后的.class文件放在build下，核心实现代码放在core下，交互界面代码放在frontend下，测试用例放在test下；
+- 每生成一个实验，将文档内容放在README.md下，并清楚的分割每个实验；
